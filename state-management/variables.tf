@@ -21,3 +21,9 @@ variable "location" {
   type        = string
   default     = "eastus"
 }
+
+variable "tags" {
+  description = "Tags for state management resources."
+  type        = map(string)
+  default     = {}
+}

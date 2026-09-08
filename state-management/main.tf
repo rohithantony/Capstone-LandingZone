@@ -17,11 +17,7 @@ resource "azurerm_resource_group" "state" {
   name     = var.resource_group_name
   location = var.location
 
-  tags = {
-    purpose     = "terraform-state"
-    environment = "management"
-    managed_by  = "terraform"
-  }
+  tags = var.tags
 }
 
 resource "azurerm_storage_account" "state" {
@@ -31,11 +27,14 @@ resource "azurerm_storage_account" "state" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
-  tags = {
-    purpose     = "terraform-state"
-    environment = "management"
-    managed_by  = "terraform"
-  }
+  https_traffic_only_enabled = true
+  min_tls_version            = "TLS1_2"
+
+  allow_nested_items_to_be_public = false
+
+  shared_access_key_enabled = true
+
+  tags = var.tags
 }
 
 resource "azurerm_storage_container" "tfstate" {
