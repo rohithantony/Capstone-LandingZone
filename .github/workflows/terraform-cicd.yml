@@ -17,13 +17,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  # Keep this aligned with the Terraform version used locally/project-wide.
   TF_VERSION: "1.15.8"
 
 jobs:
 
   # ============================================================
-  # 1. FORMAT
+  # FORMAT
   # ============================================================
   fmt:
     name: Terraform Format
@@ -43,7 +42,7 @@ jobs:
 
 
   # ============================================================
-  # 2. VALIDATE
+  # VALIDATE
   # ============================================================
   validate:
     name: Terraform Validate
@@ -77,7 +76,7 @@ jobs:
 
 
   # ============================================================
-  # 3. SECURITY SCAN
+  # CHECKOV
   # ============================================================
   security:
     name: Checkov Security Scan
@@ -100,7 +99,7 @@ jobs:
 
 
   # ============================================================
-  # 4. TERRAFORM PLAN
+  # TERRAFORM PLAN
   # ============================================================
   plan:
     name: Terraform Plan
@@ -149,7 +148,7 @@ jobs:
 
 
   # ============================================================
-  # 5. TERRAFORM APPLY
+  # TERRAFORM APPLY
   # ============================================================
   apply:
     name: Terraform Apply
