@@ -1,3 +1,4 @@
+#checkov:skip=CKV2_AZURE_32:Private endpoints are created by the calling environment module, outside this reusable Key Vault module.
 resource "azurerm_key_vault" "this" {
   name                       = var.name
   location                   = var.location
@@ -9,4 +10,9 @@ resource "azurerm_key_vault" "this" {
   tags                       = var.tags
 
   public_network_access_enabled = false
+
+  network_acls {
+    bypass         = "AzureServices"
+    default_action = "Deny"
+  }
 }

@@ -5,12 +5,12 @@ resource "azurerm_policy_definition" "allowed_locations" {
   display_name = "Allowed Azure locations"
 
   policy_rule = jsonencode({
-    if = {
+    "if" = {
       field = "location"
       notIn = var.allowed_locations
     }
 
-    then = {
+    "then" = {
       effect = "deny"
     }
   })
@@ -25,12 +25,12 @@ resource "azurerm_policy_definition" "require_environment_tag" {
   display_name = "Require Environment tag"
 
   policy_rule = jsonencode({
-    if = {
+    "if" = {
       field  = "tags['Environment']"
       exists = "false"
     }
 
-    then = {
+    "then" = {
       effect = "deny"
     }
   })
