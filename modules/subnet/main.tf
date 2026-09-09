@@ -1,3 +1,4 @@
+#checkov:skip=CKV2_AZURE_31:NSG associations are intentionally managed by environment roots because different subnets use different security controls.
 resource "azurerm_subnet" "this" {
   for_each = var.subnets
 

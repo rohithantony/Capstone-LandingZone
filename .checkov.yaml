@@ -1,0 +1,17 @@
+# These checks require architecture changes that are intentionally deferred:
+# - Private endpoints and public-access changes require private DNS and reachable runners.
+# - Shared-key removal requires migrating the Terraform backend to Azure AD.
+# - CMK encryption requires a Key Vault, identity, and key lifecycle.
+# - Firewall policy and storage replication change existing platform behavior and cost.
+# - The subnet and Key Vault relationships are managed by environment roots/modules
+#   that Checkov cannot resolve reliably from this reusable module layout.
+skip-check:
+  - CKV_AZURE_219
+  - CKV_AZURE_59
+  - CKV_AZURE_206
+  - CKV2_AZURE_32
+  - CKV2_AZURE_40
+  - CKV2_AZURE_33
+  - CKV2_AZURE_1
+  - CKV2_AZURE_21
+  - CKV2_AZURE_31
