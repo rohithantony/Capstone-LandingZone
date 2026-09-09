@@ -1,3 +1,4 @@
+#checkov:skip=CKV_AZURE_50:The existing VM has extensions and Azure does not allow changing allowExtensionOperations while extensions are present; the property is intentionally left unmanaged.
 resource "azurerm_linux_virtual_machine" "this" {
   name                = var.name
   location            = var.location

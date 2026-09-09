@@ -6,6 +6,7 @@
 # - The subnet and Key Vault relationships are managed by environment roots/modules
 #   that Checkov cannot resolve reliably from this reusable module layout.
 skip-check:
+  - CKV_AZURE_50
   - CKV_AZURE_219
   - CKV_AZURE_59
   - CKV_AZURE_206
