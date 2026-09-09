@@ -1,4 +1,3 @@
-#checkov:skip=CKV_AZURE_219:Firewall policy requires a separate policy resource and is intentionally deferred to preserve the existing firewall module contract.
 resource "azurerm_public_ip" "this" {
   name                = "${var.name}-pip"
   location            = var.location
@@ -8,6 +7,7 @@ resource "azurerm_public_ip" "this" {
   tags                = var.tags
 }
 
+#checkov:skip=CKV_AZURE_219:Firewall policy requires a separate policy resource and is intentionally deferred to preserve the existing firewall module contract.
 resource "azurerm_firewall" "this" {
   name                = var.name
   location            = var.location
