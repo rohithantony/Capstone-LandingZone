@@ -32,6 +32,10 @@ resource "azurerm_linux_virtual_machine" "this" {
   }
 
   tags = var.tags
+
+  lifecycle {
+    ignore_changes = [allow_extension_operations]
+  }
 }
 
 resource "azurerm_network_interface" "this" {
