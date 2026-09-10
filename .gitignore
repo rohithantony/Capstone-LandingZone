@@ -10,8 +10,10 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 
-# DEV environment configuration is intentionally non-sensitive
-!environments/dev/terraform.tfvars
+# Environment configuration is intentionally non-sensitive; secrets stay in CI variables.
+!environments/
+!environments/*/
+!environments/*/terraform.tfvars
 
 # Override files
 override.tf

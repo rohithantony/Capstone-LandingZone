@@ -90,7 +90,7 @@ To disable a component again, set its flag to `false` and run `terraform plan` b
 
 ## CI/CD
 
-GitHub Actions runs formatting, Checkov, validation, and independent plans for Hub, DEV, TEST, and PROD on pull requests and pushes to `main`, or through manual dispatch. CI does not run `terraform apply`.
+GitHub Actions runs formatting, Checkov, validation, and independent plans for Hub, DEV, TEST, and PROD on pull requests targeting `main`. CI does not run `terraform apply`.
 
 The plan job requires these GitHub Actions secrets:
 
@@ -99,7 +99,7 @@ The plan job requires these GitHub Actions secrets:
 - `AZURE_SUBSCRIPTION_ID`
 - `SSH_PUBLIC_KEY` for the optional DEV VM plan input
 
-Use a protected deployment workflow or run the documented commands locally for applies. Ensure the identity used by CI can read the remote state and plan each environment.
+The service principal identified by `AZURE_PLAN_CLIENT_ID` needs `Reader` at the subscription scope and `Storage Blob Data Contributor` on the Terraform state storage account. These permissions allow state locking and read-only plans; they do not allow resource creation or updates. Use a protected deployment workflow or run the documented commands locally for applies.
 
 ## Validation
 
