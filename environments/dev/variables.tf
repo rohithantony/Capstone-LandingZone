@@ -102,8 +102,8 @@ variable "ssh_public_key" {
   type        = string
   default     = ""
 
- validation {
-  condition     = !var.enable_linux_vm || length(trimspace(var.ssh_public_key)) > 0
-  error_message = "ssh_public_key must contain a public SSH key when enable_linux_vm is true."
-}
+  validation {
+    condition     = !var.enable_linux_vm || length(trimspace(var.ssh_public_key)) > 0
+    error_message = "ssh_public_key must contain a public SSH key when enable_linux_vm is true."
+  }
 }
