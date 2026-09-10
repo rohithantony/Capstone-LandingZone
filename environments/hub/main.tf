@@ -40,6 +40,7 @@ module "subnet" {
 }
 
 module "firewall" {
+  count  = var.enable_firewall ? 1 : 0
   source = "../../modules/firewall"
 
   name                = "fw-hub"
@@ -50,6 +51,7 @@ module "firewall" {
 }
 
 module "bastion" {
+  count  = var.enable_bastion ? 1 : 0
   source = "../../modules/bastion"
 
   name                = "bas-hub"
@@ -97,10 +99,11 @@ module "log_analytics" {
 
 #Diagnostic Settings for Azure Firewall
 module "firewall_diagnostics" {
+  count  = var.enable_firewall ? 1 : 0
   source = "../../modules/diagnostic-settings"
 
   name                       = "diag-firewall"
-  target_resource_id         = module.firewall.id
+  target_resource_id         = module.firewall[0].id
   log_analytics_workspace_id = module.log_analytics.id
 
   enabled_logs = [
@@ -117,10 +120,11 @@ module "firewall_diagnostics" {
 
 #Diagnostic Settings for Azure Bastion
 module "bastion_diagnostics" {
+  count  = var.enable_bastion ? 1 : 0
   source = "../../modules/diagnostic-settings"
 
   name                       = "diag-bastion"
-  target_resource_id         = module.bastion.id
+  target_resource_id         = module.bastion[0].id
   log_analytics_workspace_id = module.log_analytics.id
 
   enabled_logs = [

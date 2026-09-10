@@ -9,7 +9,8 @@ variable "allowed_locations" {
   type        = list(string)
 
   default = [
-    "eastus"
+    "eastus",
+    "global"
   ]
 }
 

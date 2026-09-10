@@ -60,6 +60,12 @@ variable "firewall_private_ip" {
   type        = string
 }
 
+variable "enable_firewall_route" {
+  description = "Whether to route spoke default traffic through the Hub Azure Firewall."
+  type        = bool
+  default     = false
+}
+
 variable "key_vault_name" {
   description = "Globally unique name of the environment Key Vault."
   type        = string

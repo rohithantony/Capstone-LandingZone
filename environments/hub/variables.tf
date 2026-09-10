@@ -35,3 +35,15 @@ variable "tags" {
   description = "Common tags for the environment."
   type        = map(string)
 }
+
+variable "enable_firewall" {
+  description = "Whether to deploy Azure Firewall and its diagnostics."
+  type        = bool
+  default     = false
+}
+
+variable "enable_bastion" {
+  description = "Whether to deploy Azure Bastion and its diagnostics."
+  type        = bool
+  default     = false
+}

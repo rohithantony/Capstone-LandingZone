@@ -62,14 +62,14 @@ module "route_table" {
   resource_group_name = module.resource_group.name
   tags                = var.tags
 
-  routes = {
+  routes = var.enable_firewall_route ? {
     default_to_firewall = {
       name                   = "route-default-to-firewall"
       address_prefix         = "0.0.0.0/0"
       next_hop_type          = "VirtualAppliance"
       next_hop_in_ip_address = var.firewall_private_ip
     }
-  }
+  } : {}
 
   subnet_ids = module.subnet.ids
 }
@@ -119,6 +119,7 @@ module "key_vault_private_endpoint" {
 }
 
 module "linux_vm" {
+  count  = var.enable_linux_vm ? 1 : 0
   source = "../../modules/linux-vm"
 
   name                = var.vm_name
