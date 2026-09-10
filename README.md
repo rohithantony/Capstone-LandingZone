@@ -99,7 +99,16 @@ The plan job requires these GitHub Actions secrets:
 - `AZURE_SUBSCRIPTION_ID`
 - `SSH_PUBLIC_KEY` for the optional DEV VM plan input
 
-The service principal identified by `AZURE_PLAN_CLIENT_ID` needs `Reader` at the subscription scope and `Storage Blob Data Contributor` on the Terraform state storage account. These permissions allow state locking and read-only plans; they do not allow resource creation or updates. Use a protected deployment workflow or run the documented commands locally for applies.
+The service principal identified by `AZURE_PLAN_CLIENT_ID` needs `Reader` at the subscription scope and `Storage Blob Data Contributor` on the Terraform state storage account. These permissions allow state locking and read-only plans; they do not allow resource creation or updates.
+
+Deployment workflows are separate from CI and use the approval-gated GitHub Environment `terraform-apply`:
+
+- `Terraform Deploy Hub` deploys `environments/hub/`.
+- `Terraform Deploy DEV` deploys `environments/dev/`.
+- `Terraform Deploy TEST` deploys `environments/test/`.
+- `Terraform Deploy PROD` deploys `environments/prod/`.
+
+Each deployment workflow runs `terraform init`, creates a saved plan, and applies that exact plan. They use the existing apply secrets `AZURE_APPLY_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, and `SSH_PUBLIC_KEY`. The apply identity needs `Contributor` at the subscription scope and `Storage Blob Data Contributor` on the Terraform state storage account.
 
 ## Validation
 
