@@ -185,6 +185,7 @@ jobs:
           terraform plan \
             -input=false \
             -no-color \
+            -var-file=terraform.tfvars \
             -out=${{ matrix.environment }}.tfplan
 
       - name: Upload Terraform Plan
