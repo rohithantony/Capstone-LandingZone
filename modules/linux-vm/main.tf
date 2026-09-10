@@ -1,5 +1,6 @@
 #checkov:skip=CKV_AZURE_50:The existing VM has extensions and Azure does not allow changing allowExtensionOperations while extensions are present; the property is intentionally left unmanaged.
 resource "azurerm_linux_virtual_machine" "this" {
+  #checkov:skip=CKV_AZURE_178:The Linux VM is optional and is disabled by default; the environment root requires a caller-provided SSH public key whenever the VM is enabled.
   name                = var.name
   location            = var.location
   resource_group_name = var.resource_group_name
