@@ -26,8 +26,19 @@ resource "azurerm_policy_definition" "require_environment_tag" {
 
   policy_rule = jsonencode({
     "if" = {
-      field  = "tags['Environment']"
-      exists = "false"
+      allOf = [
+        {
+          field  = "tags['Environment']"
+          exists = "false"
+        },
+        {
+          field = "type"
+          notIn = [
+            "Microsoft.Network/dnsResolvers/inboundEndpoints",
+            "Microsoft.Network/privateDnsZones/virtualNetworkLinks"
+          ]
+        }
+      ]
     }
 
     "then" = {

@@ -30,17 +30,17 @@ output "subnet_ids" {
 
 output "firewall_private_ip" {
   description = "Private IP address of the Hub Azure Firewall."
-  value       = module.firewall.private_ip_address
+  value       = try(module.firewall[0].private_ip_address, null)
 }
 
 output "firewall_public_ip" {
   description = "Public IP address of the Hub Azure Firewall."
-  value       = module.firewall.public_ip_address
+  value       = try(module.firewall[0].public_ip_address, null)
 }
 
 output "bastion_public_ip" {
   description = "Public IP address of Azure Bastion."
-  value       = module.bastion.public_ip_address
+  value       = try(module.bastion[0].public_ip_address, null)
 }
 
 output "dns_resolver_inbound_ip" {

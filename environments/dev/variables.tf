@@ -58,6 +58,12 @@ variable "firewall_private_ip" {
   type        = string
 }
 
+variable "enable_firewall_route" {
+  description = "Whether to route spoke default traffic through the Hub Azure Firewall."
+  type        = bool
+  default     = false
+}
+
 variable "key_vault_name" {
   description = "Globally unique name of the environment Key Vault."
   type        = string
@@ -73,6 +79,12 @@ variable "vm_name" {
   type        = string
 }
 
+variable "enable_linux_vm" {
+  description = "Whether to deploy the DEV Linux VM."
+  type        = bool
+  default     = false
+}
+
 variable "vm_size" {
   description = "Size of the DEV Linux VM."
   type        = string
@@ -82,9 +94,11 @@ variable "vm_size" {
 variable "admin_username" {
   description = "Administrator username for the DEV VM."
   type        = string
+  default     = "azureadmin"
 }
 
 variable "ssh_public_key" {
   description = "SSH public key for the DEV VM."
   type        = string
+  default     = ""
 }

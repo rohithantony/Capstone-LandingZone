@@ -47,9 +47,10 @@ security_rules = {
   }
 }
 
-route_table_name = "rt-spoke-dev"
-
-firewall_private_ip = "10.0.1.4"
+route_table_name      = "rt-spoke-dev"
+firewall_private_ip   = "10.0.1.4"
+enable_firewall_route = false
+enable_linux_vm       = false
 
 key_vault_name = "kv-capstone-dev-0001"
 
